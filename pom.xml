@@ -6,7 +6,33 @@
 
     <groupId>net.tylerwade</groupId>
     <artifactId>just-encrypt</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
+
+    <name>net.tylerwade:just-encrypt</name>
+    <description>A simple AES Encryption library. No more overcomplicating, just encrypt.</description>
+    <url>https://github.com/WadeTyler/JustEncrypt</url>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Tyler Wade</name>
+            <email>contact@tylerwade.net</email>
+            <organization>Tyler Wade</organization>
+            <organizationUrl>https://www.tylerwade.net</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/WAdeTyler/JustEncrypt.git</connection>
+        <developerConnection>scm:git:ssh://github.com:WadeTyler/JustEncrypt.git</developerConnection>
+        <url>https://github.com/WadeTyler/JustEncrypt/tree/main</url>
+    </scm>
 
     <properties>
         <maven.compiler.source>24</maven.compiler.source>
@@ -25,10 +51,65 @@
                     <target>24</target>
                 </configuration>
             </plugin>
+
+            <!-- Maven Central Required: Source JAR -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+                <artifactId>maven-source-plugin</artifactId>
                 <version>3.3.0</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Maven Central Required: Javadoc JAR -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.6.3</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- GPG Signing -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>3.2.8</version>
+                <configuration>
+                    <passphraseServerId>gpg.passphrase</passphraseServerId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Central Publishing Plugin -->
+            <plugin>
+                <groupId>org.sonatype.central</groupId>
+                <artifactId>central-publishing-maven-plugin</artifactId>
+                <version>0.8.0</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <publishingServerId>central</publishingServerId>
+                </configuration>
             </plugin>
         </plugins>
     </build>
