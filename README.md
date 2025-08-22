@@ -3,7 +3,7 @@ JustEncrypt is a simple and secure encryption tool that allows you to encrypt an
 
 ## Quick Start
 ### 1. Add the required dependency to your pom.xml:
-```
+```xml
 <dependency>
     <groupId>net.tylerwade</groupId>
     <artifactId>just-encrypt</artifactId>
@@ -15,7 +15,7 @@ JustEncrypt is a simple and secure encryption tool that allows you to encrypt an
 To add an encryption key, you either add the encryption to the constructor of the `JustEncrypt` class or set it via Environmental variable. NOTE: If you do not set an encryption key, an encryption key will be auto generated, but will not persist across runs.
 
 #### Constructor Example:
-```
+```java
 SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
 JustEncrypt justEncrypt = new JustEncrypt(secretKey);
 ```
