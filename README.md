@@ -20,7 +20,7 @@ SecretKey secretKey = KeyGenerator.getInstance("AES").generateKey();
 JustEncrypt justEncrypt = new JustEncrypt(secretKey);
 ```
 
-#### Environmental Variable Example:
+#### Environmental Variable Example (Recommended):
 ```
 JUST_ENCRYPT_KEY=your_secret_key_here
 ```
